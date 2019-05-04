@@ -9,16 +9,14 @@ class App extends React.Component
 {
     state = 
     {
-        currentScreen : "Landing",
+        currentScreen : "Search",
     }
     switchScreen = (newScreen) =>
     {
-        console.log(newScreen);
+        if(typeof newScreen !== 'string')
+            return;
 
         this.setState({currentScreen : newScreen});
-
-        console.log(this.state.currentScreen);
-
     }
 
     renderScreen = () => 
