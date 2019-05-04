@@ -1,16 +1,49 @@
 import React from 'react';
 import { View, Text, Platform } from "react-native";
 import Landing from './src/Landing.js';
+import Search from './src/Search.js';
 
 var landingBackground = require('./assets/icons/landing.jpg');
 
 class App extends React.Component
 {
+    state = 
+    {
+        currentScreen : "Landing",
+    }
+    switchScreen = (newScreen) =>
+    {
+        console.log(newScreen);
+
+        this.setState({currentScreen : newScreen});
+
+        console.log(this.state.currentScreen);
+
+    }
+
+    renderScreen = () => 
+    {
+        // console.log(this.state.currentScreen);
+
+        if (this.state.currentScreen == "Landing")
+        {
+            return(
+                <Landing switchScreen = {this.switchScreen}/>
+            )
+        }
+        else if(this.state.currentScreen == "Search")
+        {
+            return (
+                <Search />
+            )
+        }
+    }
+    
     render()
     {
         return(
             <View style = {style.Container}>
-               <Landing />
+                {this.renderScreen()}
             </View>
         );
     }
