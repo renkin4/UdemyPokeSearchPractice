@@ -9,7 +9,7 @@ class App extends React.Component
 {
     state = 
     {
-        currentScreen : "Search",
+        currentScreen : "Landing",
     }
     switchScreen = (newScreen) =>
     {

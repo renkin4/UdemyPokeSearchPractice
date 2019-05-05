@@ -11,23 +11,26 @@ class Search extends React.Component
     {
         pokeSearch : "",
         onCall : true,
+        data : {}
     }
     searchPoke = () =>
     {
         this.setState({onCall : true});
 
-        try
-        {
+        var self = this;
             axios.get("http://pokeapi.co/api/v2/pokemon/" + this.state.pokeSearch.toLowerCase())
             .then(function(response)
             {
                 console.log(response.data);
-            });
-        }
-        catch (error)
-        {
-            console.error(`Error received from axios.post: ${JSON.stringify(err)}`);
-        }
+                self.setState({data : response.data});
+                self.setState({onCall : false});
+            })
+            .catch(function(error)
+            {
+                console.log(error);
+                self.setState({data : null});
+                self.setState({onCall : false});
+            })
     }
     renderBody = () =>
     {
@@ -40,7 +43,7 @@ class Search extends React.Component
         else
         {
             return(
-                <SearchBody />
+                <SearchBody data = {this.state.data}/>
             )
         }
     }
