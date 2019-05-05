@@ -21,8 +21,6 @@ class App extends React.Component
 
     renderScreen = () => 
     {
-        // console.log(this.state.currentScreen);
-
         if (this.state.currentScreen == "Landing")
         {
             return(
